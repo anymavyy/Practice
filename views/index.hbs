@@ -1,0 +1,30 @@
+<!--29:00/46:58-->
+<h2>Todos page</h2>
+
+{{#if todos.length}} <!--Если в массиве что-то есть, будем его рендерить тут-->
+<ul><!--Оборачиваем в список ul, тк будем использовать данный список для вывода-->
+  {{#each todos}}<!--Запускаем итерацию через обращение к массиву-->
+  <li class="todo"><!--На каждой итерации запускаем трек li-->
+    <form action="/complete" method="POST"> <!--Действие для завершения ToDo--> <!--39:00/46:58-->
+      <label>
+        {{#if completed}}
+        <input type="checkbox" checked name="completed">
+        <span class="completed">{{title}}</span>
+        {{else}}
+        <input type="checkbox" name="completed">
+        <span>{{title}}</span><!--Вывод названия ToDo-->
+        {{/if}}
+
+        <!--Определение какой ToDo мы изменяем (его id)-->
+        <input type="hidden" value="{{id}}" name="id"> <!--40:20/46:58-->
+
+        <button class="btn btn-small" type="submit">Save</button>
+      </label>
+    </form>
+  </li>
+  {{/each}}
+</ul>
+
+{{else}}<!--Если массив пустой, возвращаем No todos!-->
+<p>No todos!</p>
+{{/if}}
